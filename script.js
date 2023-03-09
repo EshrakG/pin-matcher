@@ -55,29 +55,34 @@ document.getElementById('verify').addEventListener('click', function() {
     const typedNumbers = document.getElementById('typed-numbers');
     const previousTypedNumber = typedNumbers.value
 
+    displayPinField.value = '';
+    typedNumbers.value = '';
+
+
     const pinSucces = document.getElementById('pin-Succes');
     const pinFail = document.getElementById('pin-failed');
     const pinEmpty = document.getElementById('pin-empty');
 
-    if (currentField !== previousTypedNumber) {
+    if (currentField === '') {
+        console.log(pinSucces);
+        pinEmpty.style.display = 'block';
+        pinSucces.style.display = 'none';
+        pinFail.style.display = 'none';
+        alert('Please input number');
+
+    } else if (currentField === previousTypedNumber) {
+        console.log(pinSucces);
+        pinSucces.style.display = 'block';
+        pinFail.style.display = 'none';
+        pinEmpty.style.display = 'none';
+        alert("✅ Pin Matched... Secret door is opening for you");
+    } else {
         console.log(pinSucces);
         pinFail.style.display = 'block';
         pinSucces.style.display = 'none';
         pinEmpty.style.display = 'none';
         alert("❌ Pin Didn't Match, Please try again");
 
-    } else if (currentField === '') {
-        console.log(pinSucces);
-        pinEmpty.style.display = 'block';
-        pinSucces.style.display = 'none';
-        pinFail.style.display = 'none';
-        alert('Please input number');
-    } else {
-        console.log(pinSucces);
-        pinSucces.style.display = 'block';
-        pinFail.style.display = 'none';
-        pinEmpty.style.display = 'none';
-        alert("✅ Pin Matched... Secret door is opening for you");
     }
 
 
